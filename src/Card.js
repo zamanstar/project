@@ -9,6 +9,7 @@ class Card extends Component{
         console.log(ti)
     }
     render(){
+        
         let{title,body}  = this.props;
         return (
                     <div className = 'card'>
