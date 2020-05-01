@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './ChangeStateApp';
 import Card from './Card';
 import * as serviceWorker from './serviceWorker';
 
@@ -22,12 +22,12 @@ let tick = () =>{
   return element
 }
 
-setInterval(() => {
+// setInterval(() => {
   ReactDOM.render(
     <App/>,
     document.getElementById('root')
   );
-}, 1000);
+// }, 1000);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
