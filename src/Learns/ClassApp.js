@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Card from './Card';
+import Card from '../Components/Card';
 
 class App extends React.Component{
   state = {

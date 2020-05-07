@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
+import './Card.css';
+import {Card} from 'react-bootstrap';
 
-class Card extends Component{
+class CardItem extends Component{
     eventHandler(e){
         console.log('click')
     }
@@ -12,10 +14,11 @@ class Card extends Component{
         
         let{title,body}  = this.props;
         return (
-                    <div className = 'card'>
-                        <header className = "card-header">
-                        <h2>Card Title</h2>
-                        </header>
+            <Card>
+
+                        <Card.Header as="h2">
+                                  {title}
+                        </Card.Header>
                         <section className="card-body">
                             <p>{title}</p>
                         </section>
@@ -27,9 +30,10 @@ class Card extends Component{
                             <button onClick={this.eventHandler.bind(this,'blablabla')}>click4</button>
                             <button onClick={(e) => this.eventHandlerSecound(e,'dddd')}>click5</button>
                         </footer>
-                    </div>
+            </Card>
+            
                 )
     }
 }
 
-export default Card;
+export default CardItem;
