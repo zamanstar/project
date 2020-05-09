@@ -1,6 +1,8 @@
 import React from 'react';
 import '../App.css';
-import Card from '../components/Card';
+import CardItem from '../components/BootstrapCard';
+import ErrorBoundary from '../components/errors/ErrorBoundary'
+
 
 
 class App extends React.Component{
@@ -53,32 +55,28 @@ class App extends React.Component{
 
     render(){
        console.log(this.state);
-       let articleList = this.state.articles.map((article , index) => <Card key={index} title={article.title} body={article.body}></Card>)  ;
+       let articleList = this.state.articles.map((article , index) => 
+       <ErrorBoundary>
+         <CardItem key={index} title={article.title} body={article.body}></CardItem>
+       </ErrorBoundary>)  ;
        let btnclasses = ['btn-more']
 
        if(this.state.btnHover) {
          btnclasses.push('active')
-       }
+       } 
        console.log(btnclasses)
        return(
             <div className = "app">
-                
-                { articleList}
 
+                <div className='container'>
+                  <div class="row">
+                  { articleList}       
+                  </div> 
+                </div>
                 {this.state.loading
-                    ?  <div>Loading...</div>
-                    : null
-                    }
-
-             {/* Estefade az class ha */}
-             {/* in classi ke inja dadi ro mibaram too app.css onja vared mikonam */}
-              {/* <button 
-               className={`btn-more ${this.state.btnHover ? 'active' : ''}`}
-               onClick = {this.loadMore} 
-               onMouseEnter={this.mouseEnter}
-               onMouseLeave={this.mouseLeave}
-               >load more</button> */}
-
+                      ?  <div>Loading...</div>
+                      : null 
+                      }
                <button 
                className={btnclasses.join(' ')}
                onClick = {this.loadMore} 
@@ -86,7 +84,7 @@ class App extends React.Component{
                onMouseLeave={this.mouseLeave}
                >load more</button>
               
-            {/* <button style={{backgroundColor : '#555', padding : '10px 25px', color : 'none'}} onClick = {this.loadMore}>load more</button> */}
+  
            </div>
        )
 

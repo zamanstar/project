@@ -1,14 +1,8 @@
 import React, {Component} from './node_modules/react';
 import './Card.css'
 
-class Card extends Component{
-    eventHandler(e){
-        console.log('click')
-    }
-
-    eventHandlerSecound(e,ti){
-        console.log(ti)
-    }
+class AlertComponent extends Component{
+    
     render(){
         
         let{title,body}  = this.props;
@@ -23,14 +17,10 @@ class Card extends Component{
                         <footer>
                              <p>{body}</p>
                             <button onClick={() => console.log(title)}>click</button>
-                            <button onClick={(e) => this.eventHandler(e)}>click2</button>
-                            <button onClick={this.eventHandler}>click3</button>
-                            <button onClick={this.eventHandler.bind(this,'blablabla')}>click4</button>
-                            <button onClick={(e) => this.eventHandlerSecound(e,'dddd')}>click5</button>
                         </footer>
                     </div>
                 )
     }
 }
 
-export default Card;
+export default AlertComponent;

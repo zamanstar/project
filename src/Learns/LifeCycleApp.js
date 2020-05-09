@@ -1,10 +1,52 @@
 import React from 'react';
 import '../App.css';
-import CardItem from '../components/BootstrapCard';
+import CardItem from '../components/LifeCycleCard';
 import {Carousel} from 'react-bootstrap';
+import ErrorBoundary from '../components/errors/ErrorBoundary'
 
 
 class App extends React.Component{
+
+
+  constructor(props){
+    super(props);
+    console.log('[app.js] run in constructor')
+  }
+
+  //in on tavabei hast ke goftam run mishe 
+  static getDerivedStateFromProps(props , state)
+  {
+    console.log('[app.js] run in getDerivedStateFromProps');
+    return null;
+  }
+
+  shouldComponentUpdate(props, state){
+      console.log(props , state);
+      console.log('[app.js] run in shouldComponentUpdate');
+      return true;
+  }
+
+  getSnapshotBeforeUpdate(props, state){
+    console.log(props, state);
+    console.log('[app.js] run in getSnapshotBeforeUpdate');
+    return null;
+  }
+ 
+  componentDidMount() {
+    //console.log('[app.js] run in componentDidMount');
+
+
+    //ino vase in hast ke betunam updating ro tozih bedam
+    setTimeout(() => {
+      this.setState((state, props)=> ({
+              articles : [...state.articles, {id : 4 , title : 'article 4' , body : 'this is article 4 '}]
+      }))
+    }, 3000);
+  }
+
+  componentDidUpdate(props, state , snapshot){
+    console.log('[app.js] run in componentDidUpdate');
+  }
 
     state = {
         articles : [
@@ -53,7 +95,9 @@ class App extends React.Component{
     
 
     render(){
-       console.log(this.state);
+
+      console.log('[app.js] run in render');
+
        let articleList = this.state.articles.map((article , index) => <CardItem key={index} title={article.title} body={article.body}></CardItem>)  ;
        let btnclasses = ['btn-more']
 
@@ -107,7 +151,9 @@ class App extends React.Component{
 
                 <div className='container'>
                   <div className="row">
-                  { articleList}       
+                    <ErrorBoundary>
+                  { articleList}    
+                  </ErrorBoundary>   
                   </div> 
                 </div>
                 {this.state.loading

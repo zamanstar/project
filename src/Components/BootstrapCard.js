@@ -8,11 +8,12 @@ class CardItem extends Component{
     }
 
     eventHandlerSecound(e,ti){
-        console.log(ti)
+        console.log('ti');
     }
     render(){
         
         let{title,body}  = this.props;
+         //throw Error('Somthing wnt wrong2');
         return (
             <Card>
 
