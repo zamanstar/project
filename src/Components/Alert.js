@@ -1,24 +1,40 @@
-import React, {Component} from './node_modules/react';
+import React, {Component} from 'react';
 import './Card.css'
+import {Alert,Button} from 'react-bootstrap'
 
 class AlertComponent extends Component{
     
+     state = {
+         show : true
+     }
+
+     setShow(status){
+         this.setState({
+             show : status
+         })
+     }
+
     render(){
-        
-        let{title,body}  = this.props;
-        return (
-                    <div className = 'card'>
-                        <header className = "card-header">
-                        <h2>Card Title</h2>
-                        </header>
-                        <section className="card-body">
-                            <p>{title}</p>
-                        </section>
-                        <footer>
-                             <p>{body}</p>
-                            <button onClick={() => console.log(title)}>click</button>
-                        </footer>
-                    </div>
+       let { show } = this.state;
+        return ( 
+            <>
+            <Alert show={show} variant="success">
+              <Alert.Heading>How's it going?!</Alert.Heading>
+              <p>
+                Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget
+                lacinia odio sem nec elit. Cras mattis consectetur purus sit amet
+                fermentum.
+              </p>
+              <hr />
+              <div className="d-flex justify-content-end">
+                <Button onClick={() => this.setShow(false)} variant="outline-success">
+                  Close me ya'll!
+                </Button>
+              </div>
+            </Alert>
+      
+            {!show && <Button onClick={() => this.setShow(true)}>Show Alert</Button>}
+          </>
                 )
     }
 }
