@@ -4,7 +4,7 @@ import CardItem from '../components/LifeCycleCard';
 import MyAlert  from '../components/Alert';
 import {Carousel} from 'react-bootstrap'
 
-
+//gi
 class App extends React.Component{
 
     state = {
