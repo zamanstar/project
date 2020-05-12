@@ -92,13 +92,21 @@ class App extends React.Component{
         btnHover : false
       })
    }
+
+   deleteArticle(articleId){
+     this.setState(prevState=>{
+       return {
+          articles : prevState.articles.filter(article => article.id !== articleId)
+       }
+     })
+   }
     
 
     render(){
 
       console.log('[app.js] run in render');
 
-       let articleList = this.state.articles.map((article , index) => <CardItem key={index} title={article.title} body={article.body}></CardItem>)  ;
+       let articleList = this.state.articles.map((article , index) => <CardItem key={index} title={article.title} body={article.body} id={article.id} deleteArticle={this.deleteArticle.bind(this)}></CardItem>)  ;
        let btnclasses = ['btn-more']
 
        if(this.state.btnHover) {
@@ -109,7 +117,9 @@ class App extends React.Component{
             <div className = "app">
 
 
-        <Carousel>
+
+                <div className='container'>
+                <Carousel>
             <Carousel.Item>
               <img
                 className="d-block w-100"
@@ -147,16 +157,10 @@ class App extends React.Component{
             </Carousel.Item>
         </Carousel>
 
-
-
-                <div className='container'>
-                  <div className="row">
-                    <ErrorBoundary>
-                  { articleList}    
+                   <ErrorBoundary>
+                      { articleList}    
                   </ErrorBoundary>   
-                  </div> 
-                </div>
-                {this.state.loading
+                  {this.state.loading
                       ?  <div>Loading...</div>
                       : null 
                       }
@@ -166,6 +170,8 @@ class App extends React.Component{
                onMouseEnter={this.mouseEnter}
                onMouseLeave={this.mouseLeave}
                >load more</button>
+                </div>
+          
               
   
            </div>

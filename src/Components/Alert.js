@@ -1,21 +1,51 @@
-import React, {Component} from 'react';
+// import React, {Component} from 'react';
+
+//in baes mishe man naram be soorate dasti update shodane component ro check konam  
+import React, {PureComponent} from 'react';
+
 import './Card.css'
 import {Alert,Button} from 'react-bootstrap'
 
-class AlertComponent extends Component{
+class AlertComponent extends PureComponent{
     
-     state = {
-         show : true
-     }
+     state = {  }
 
-     setShow(status){
-         this.setState({
-             show : status
-         })
-     }
+    //  setShow(status){
+    //      this.setState({
+    //          show : status
+    //      })
+    //  }
 
-    render(){
-       let { show } = this.state;
+    componentDidMount(){
+      console.log('[Alert.js] run in componentDidMount');
+    }
+  
+    componentDidUpdate(){
+      console.log('[Alert.js] run in componentDidUpdate');
+      
+    }
+  
+    static getDerivedStateFromProps(props , state)
+    {
+      console.log('[Alert.js] run in getDerivedStateFromProps');
+      return null;
+    }
+  
+    shouldComponentUpdate(props , state){
+      console.log('[Alert.js] run in shouldComponentUpdate');
+      if(props.show !== this.props.show)
+      return true;
+
+      return false;
+   }
+  
+  
+      render(){
+          
+        console.log('[Alert.js] run in render');
+
+       let { show, setShow } = this.props;
+       console.log(setShow);
         return ( 
             <>
             <Alert show={show} variant="success">
@@ -27,13 +57,13 @@ class AlertComponent extends Component{
               </p>
               <hr />
               <div className="d-flex justify-content-end">
-                <Button onClick={() => this.setShow(false)} variant="outline-success">
+                <Button onClick={() => setShow(false)} variant="outline-success">
                   Close me ya'll!
                 </Button>
               </div>
             </Alert>
       
-            {!show && <Button onClick={() => this.setShow(true)}>Show Alert</Button>}
+            {!show && <Button onClick={() => setShow(true)}>Show Alert</Button>}
           </>
                 )
     }
